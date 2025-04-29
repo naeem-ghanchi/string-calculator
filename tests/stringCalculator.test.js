@@ -11,6 +11,7 @@ describe('String Calculator', () => {
   });
   test('should return sum for two numbers separated by comma', () => {
     expect(add("1,2")).toBe(3);
+    expect(add("1,5")).toBe(6);
     expect(add("4,5")).toBe(9);
   });
   test('should return sum for multiple numbers separated by comma', () => {
@@ -18,4 +19,8 @@ describe('String Calculator', () => {
     expect(add("10,20,30,40")).toBe(100);
   });
   
+  test('should handle new lines between numbers', () => {
+    expect(add("1\n2,3")).toBe(6);
+    expect(add("4\n5\n6")).toBe(15);
+  });  
 });
