@@ -2,12 +2,11 @@ function add(numbers) {
   if (numbers === "") {
     return 0;
   }
-
+  if (numbers.includes(",")) {
+    const parts = numbers.split(",");
+    return parseInt(parts[0]) + parseInt(parts[1]);
+  }
   return parseInt(numbers);
 }
-
-
-console.log("should return 0 for empty string", add(""));
-console.log("should return number for single number string", add("5"));
 
 module.exports = add;
