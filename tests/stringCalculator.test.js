@@ -1,4 +1,5 @@
 const add = require('../src/stringCalculator');
+const expectedNegativesMessage = require('../utils/helper');
 
 describe('String Calculator', () => {
   test('should return 0 for empty string', () => {
@@ -28,10 +29,10 @@ describe('String Calculator', () => {
     expect(add("//-\n3-2-1")).toBe(6);
   });
   test('should throw exception for negative numbers', () => {
-    expect(() => add("1,-2,3")).toThrow("negative numbers not allowed -2");
+    expect(() => add("1,-2,3")).toThrow(expectedNegativesMessage("-2"));
   });
   
   test('should list all negative numbers in exception message', () => {
-    expect(() => add("-1,-2,3,-4")).toThrow("negative numbers not allowed -1,-2,-4");
+    expect(() => add("-1,-2,3,-4")).toThrow(expectedNegativesMessage("-1","-2","-4"));
   });
 });
