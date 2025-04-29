@@ -1,3 +1,5 @@
+const expectedNegativesMessage = require("../utils/helper");
+
 function add(numbers) {
   if (numbers === "") {
     return 0;
@@ -11,9 +13,9 @@ function add(numbers) {
 
   const parts = numbers.split(delimiter);
   const numbersArray = parts.map((n) => parseInt(n));
-  const negatives = numbersArray.filter((n) => n < 0);
-  if (negatives.length > 0) {
-    throw new Error(`negative numbers not allowed ${negatives.join(",")}`);
+  const negativeNumbers = numbersArray.filter((n) => n < 0);
+  if (negativeNumbers.length > 0) {
+    throw new Error(expectedNegativesMessage(negativeNumbers));
   }
   return numbersArray.reduce((sum, num) => sum + num, 0);
 }
