@@ -10,7 +10,12 @@ function add(numbers) {
   }
 
   const parts = numbers.split(delimiter);
-  return parts.reduce((sum, num) => sum + parseInt(num), 0);
+  const numbersArray = parts.map((n) => parseInt(n));
+  const negatives = numbersArray.filter((n) => n < 0);
+  if (negatives.length > 0) {
+    throw new Error(`negative numbers not allowed ${negatives.join(",")}`);
+  }
+  return numbersArray.reduce((sum, num) => sum + num, 0);
 }
 
 module.exports = add;
