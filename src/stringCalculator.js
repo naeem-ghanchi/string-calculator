@@ -2,7 +2,14 @@ function add(numbers) {
   if (numbers === "") {
     return 0;
   }
-  const parts = numbers.split(/,|\n/); // regex: comma OR newline
+
+  let delimiter = /,|\n/;
+  if (numbers.startsWith("//")) {
+    delimiter = new RegExp(numbers[2]);
+    numbers = numbers.substring(4);
+  }
+
+  const parts = numbers.split(delimiter);
   return parts.reduce((sum, num) => sum + parseInt(num), 0);
 }
 
